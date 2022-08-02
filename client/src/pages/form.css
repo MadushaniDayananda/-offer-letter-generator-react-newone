@@ -1,45 +1,46 @@
-.form1{
-    text-align: center;
-
+.form1 {
+  text-align: center;
 }
-.nav{
-    align-content: flex-end;
-    align-items: flex-end;
-    align-content: flex-end;
-    background-color: bisque;
-    
+.nav {
+  align-content: flex-end;
+  align-items: flex-end;
+  align-content: flex-end;
+  background-color: bisque;
 }
-.heading{
-    color: brown;
-    text-align: center;
+.heading {
+  color: brown;
+  text-align: center;
 }
 
-.homeButton{
-    color: rgb(236, 159, 104);
-    margin-top: 20%;
-    margin-left:25%;
-    margin-right:25%;
-    background-color: brown;
-    border-radius:10% 10% 10% 10%;
-    width: 40%;
-    
-    
+.homeButton {
+  color: rgb(236, 159, 104);
+  margin-top: 20%;
+  margin-left: 25%;
+  margin-right: 25%;
+  background-color: brown;
+  border-radius: 10% 10% 10% 10%;
+  width: 40%;
 }
-.homeButton1{
-    color: rgb(236, 159, 104);
-    margin-top: 5%;
-    margin-left:25%;
-    margin-right:25%;
-    background-color: brown;
-    width: 40%;
-    border-radius: 10%;
-    
-    
+.homeButton1 {
+  color: rgb(236, 159, 104);
+  margin-top: 5%;
+  margin-left: 25%;
+  margin-right: 25%;
+  background-color: brown;
+  width: 40%;
+  border-radius: 10%;
 }
-.comA{
-    font-size: 18px;
-    margin-bottom: 0px;
+.comA {
+  font-size: 18px;
+  margin-bottom: 20px;
 }
-.formBasicn{
-    margin-bottom: 0px;
+.formBasicn {
+  margin-bottom: 0px;
 }
+
+.mLarge {
+  margin-left: 15vw;
+  margin-right: 15vw;
+  margin-bottom: 10vh;
+}
+

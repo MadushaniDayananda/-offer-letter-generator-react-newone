@@ -4,150 +4,140 @@ import { Link, useNavigate } from 'react-router-dom';
 import './form.css';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
+import './form.css';
 
-function FORM(props) {
-  const [l_name, setL_name] = useState();
-  const [Company_Name, setCompany_Name] = useState();
-  const [C_ress_line1, setC_ress_line1] = useState();
-  const [C_Address_Line2, setC_Address_Line2] = useState();
-  const [c_City, setc_City] = useState();
-  const [C_Email_ress, setC_Email_ress] = useState();
-  const [P_Employees_Name, setP_Employees_Name] = useState();
-  const [P_Employees_Email, setP_Employees_Email] = useState();
-  const [Offer_Date, setOffer_Date] = useState();
-  const [Direct_Report, setDirect_Report] = useState();
-  const [Office_Location, setOffice_Location] = useState();
-  const [Paid_Method, setPaid_Method] = useState();
-  const [Stock_opttion, setStock_opttion] = useState();
-  const [Offer_EP_datte, setOffer_EP_datte] = useState();
-  const [Anticipated_date, setAnticipated_date] = useState();
-  const [Company_Signer, setCompany_Signer] = useState();
-  const [Signer_Title, setSigner_Title] = useState();
-  const [Signer_Email, setSigner_Email] = useState();
-  const [Prepairs_Email, setPrepairs_Email] = useState();
+function EditForm() {
+ 
   //new change
   const navigate = useNavigate();
-  const [details, setDetails] = useState();
+  const [lname,setLName] = useState();
+  const[id,setId]=useState();
+  const[CompanyName,setCompanyName]=useState();
+  const[cAddLine1,setCAddLine1]=useState();
+  const[cAddressLine2,setCAddressLine2]=useState();
+  const[city,setCity]=useState();
+  const[cEmail,setCEmail]=useState();
+  const[eName,setEName]=useState();
+  const[eEmail,setEEmail]=useState();
+  const[oDate,setODate]=useState();
+  const[directReport,setDirectReport]=useState();
+  const[officeLocation,setOfficeLocation]=useState();
+  const[paidMethod,setPaidMethod]=useState();
+  const[stockopttion,setStockOpttion]=useState();
+  const[oExDate,setOExDate]=useState();
+  const[anticipatedDate,setAnticipatedDate]=useState();
+  const[companySigner,setCompanySigner]=useState();
+  const[signerTitle,setSignerTitle]=useState();
+  const[signerEmail,setSignerEmail]=useState();
+  const[prepairsEmail,setPrepairsEmail]=useState();
 
-  //validation
-  const [error, setError] = useState(false);
+  
+  
+  
 
   const onSubmitForm = async (e) => {
-    e.preventDefault();
-
-    console.log('click');
+    console.log("test");
+    
     try {
-      const body = {
-        l_name,
-        Company_Name,
-        C_ress_line1,
-        C_Address_Line2,
-        c_City,
-        C_Email_ress,
-        P_Employees_Name,
-        P_Employees_Email,
-        Offer_Date,
-        Direct_Report,
-        Office_Location,
-        Paid_Method,
-        Stock_opttion,
-        Offer_EP_datte,
-        Anticipated_date,
-        Company_Signer,
-        Signer_Title,
-        Signer_Email,
-        Prepairs_Email,
-      };
-      const response = await fetch('http://localhost:5000/letterdt', {
-        method: 'POST',
-        headers: { 'content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-      const data = await response.json();
-      console.log(data);
-      setDetails(data);
+        const body = {
+            l_id: id,
+            l_name:lname,
+            company_name:CompanyName,
+            c_ress_line1:cAddLine1,
+            c_address_line2:cAddressLine2,
+            c_city:city,
+            c_email_ress:cEmail,
+            p_employees_name:eName,
+            p_employees_email:eEmail,
+            offer_date:oDate,
+            direct_report:directReport,
+            office_location:officeLocation,
+            paid_method:paidMethod,
+            stock_opttion:stockopttion,
+            offer_ep_datte:oExDate,
+            anticipated_date:anticipatedDate,
+            company_signer:companySigner,
+            signer_title:signerTitle,
+            signer_email:signerEmail,
+            prepairs_email:prepairsEmail,
+        };
+            console.log(body);
+        const response = await fetch(
+          `http://localhost:5000/update`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+          }
+          
+        );
+        console.log('clicked');
+        
+  
+       
+      } catch (err) {
+        console.error(err.message);
+      }
+   
+      navigate('/NewFormatLetter');
+      console.log(anticipatedDate);
 
-      console.log(data.l_id);
-      console.log(details);
-      const id= (data.l_id);
-
-      navigate('/NewFormatLetter',`http://localhost:5000/getone/${id}`);
-      {/*navigate('/Example');*/}
-
-      // navigate('/formatletter', {
-      //   state: {
-      //     l_name
-      //   },
-      // });
-
-      console.log(data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  // const getInitialState = () => {
-  //   return {
-  //     l_name: '',
-  //     l_nameValid: false, // valid flags for each field
-  //     submitDisabled: true, // separate flag for submit
-  //   };
-  // };
-  // const handleChangel_name = (e) => {
-  //   // separate handler for each field
-  //   let l_nameValid = e.target.value ? true : false; // basic email validation
-  //   let submitValid = this.state.l_nameValid; // validate total form
-  //   this.setState({
-  //     email: e.target.value,
-  //     l_nameValid: l_nameValid,
-  //     submitDisabled: !submitValid,
-  //   });
-  // };
-
-  // const [text, enableButton] = useState('');
-
-  // const handleTextChange = (event) => {
-  //   enableButton(event.target.value);
-  // };
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   alert(`Your state values: \n
-  //           text: ${text} \n
-  //           You can replace this alert with your process`);
-  // };
+    };
+  
+    
+  
 
  
 
-  // const toComponentFormatletter=()=>{
+  useEffect(()=>{
+    const getldetails = async (id)=>{
+        const res = await fetch(`http://localhost:5000/getone/${id}`);
+        // const data = await res.json();
+        // setFormData(data);
+        // console.log(formData);
+        const getdata = await res.json();
+        setLName(getdata.l_name);
+        setId(getdata.l_id);
+        setCompanyName(getdata.company_name);
+        setCAddLine1(getdata.c_ress_line1);
+        setCAddressLine2(getdata.c_address_line2);
+        setCity(getdata.c_city);
+        setCEmail(getdata.c_email_ress);
+        setEName(getdata.p_employees_name);
+        setEEmail(getdata.p_employees_email);
+        setODate(getdata.offer_date);
+        setDirectReport(getdata.direct_report);
+        setOfficeLocation(getdata.office_location);
+        setPaidMethod(getdata.paid_method);
+        setStockOpttion(getdata.stock_opttion);
+        setOExDate(getdata.offer_ep_datte);
+        setAnticipatedDate(getdata.anticipated_date);
+        setCompanySigner(getdata.company_signer);
+        setSignerTitle(getdata.signer_title);
+        setSignerEmail(getdata.signer_email);
+        setPrepairsEmail(getdata.prepairs_email);
+        
+        
+        console.log(getdata);
+        console.log(getdata.anticipated_date);
+        
+        
+        
+        
+        
+    }
+    console.log(anticipatedDate);
+   
+    getldetails();
+},[]);
 
-  //             navigate('/formatletter',{state:{l_name}});
-
-  //       }
-
-  //   useEffect(()=>{
-  //     const getldetails = async (id)=>{
-  //         const res = await fetch(`http://localhost:5000/getlastindex`);
-  //         // const data = await res.json();
-  //         // setFormData(data);
-  //         // console.log(formData);
-  //         const getdata = await res.json();
-  //         setDetails(getdata);
-  //         console.log(getdata);
-  //         console.log(getdata.l_name);
-
-  //     }
-
-  //     getldetails();
-  // },[]);
 
   return (
     <Fragment>
-      <div className="mLarge">
+        
+        <div className="mLarge">
         <hr />
         <Form onSubmit={onSubmitForm}>
-          {/* <div className="row">
-            <div className="col"> */}
           <div className='row'>
           <h1 className="comA">General Details</h1>
             <div className='col'>
@@ -158,8 +148,8 @@ function FORM(props) {
                   type="text"
                   className="border border-primary border-1"
                   placeholder="Enter name"
-                  value={l_name}
-                  onChange={(e) => setL_name(e.target.value)}
+                  value={lname}
+                  onChange={(e) => setLName(e.target.value)}
                   required
                   //   onMouseOver={this.handleChangel_name}
                 />
@@ -177,8 +167,8 @@ function FORM(props) {
                 <Form.Control
                   type="text"
                   className="border border-primary border-1"
-                  value={Company_Name}
-                  onChange={(e) => setCompany_Name(e.target.value)}
+                  value={CompanyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
                 />
                 <Form.Text className="text-muted">
                   Enter your company's legal name exactly as it appears on your
@@ -199,8 +189,8 @@ function FORM(props) {
                 <Form.Control
                   type="text"
                   className="border border-primary border-1"
-                  value={C_ress_line1}
-                  onChange={(e) => setC_ress_line1(e.target.value)}
+                  value={cAddLine1}
+                  onChange={(e) => setCAddLine1(e.target.value)}
                 />
                 <Form.Text className="text-muted">Address Line 1</Form.Text>
               </Form.Group>
@@ -212,8 +202,8 @@ function FORM(props) {
                 <Form.Control
                   type="text"
                   className="border border-primary border-1"
-                  value={C_Address_Line2}
-                  onChange={(e) => setC_Address_Line2(e.target.value)}
+                  value={cAddressLine2}
+                  onChange={(e) => setCAddressLine2(e.target.value)}
                 />
                 <Form.Text className="text-muted">Address Line 2</Form.Text>
               </Form.Group>
@@ -227,8 +217,8 @@ function FORM(props) {
                 <Form.Control
                   type="text"
                   className="border border-primary border-1"
-                  value={c_City}
-                  onChange={(e) => setc_City(e.target.value)}
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
                 />
                 <Form.Text className="text-muted">Home town</Form.Text>
               </Form.Group>
@@ -239,8 +229,8 @@ function FORM(props) {
                 <Form.Control
                   type="text"
                   className="border border-primary border-1"
-                  value={C_Email_ress}
-                  onChange={(e) => setC_Email_ress(e.target.value)}
+                  value={cEmail}
+                  onChange={(e) => setCEmail(e.target.value)}
                 />
                 <Form.Text className="text-muted">
                   (e.g. hello@acme.com)
@@ -258,8 +248,8 @@ function FORM(props) {
                 <Form.Control
                   type="text"
                   className="border border-primary border-1"
-                  value={P_Employees_Name}
-                  onChange={(e) => setP_Employees_Name(e.target.value)}
+                  value={eName}
+                  onChange={(e) => setEName(e.target.value)}
                 />
                 <Form.Text className="text-muted">full name</Form.Text>
               </Form.Group>
@@ -273,13 +263,13 @@ function FORM(props) {
                   type="email"
                   className="border border-primary border-1"
                   required
-                  value={P_Employees_Email}
-                  onChange={(e) => setP_Employees_Email(e.target.value)}
+                  value={eEmail}
+                  onChange={(e) => setEEmail(e.target.value)}
                 />
               </Form.Group>
               <br />
             </div>
-          </div>
+          </div> 
 
           <div className="row">
             <div className="col">
@@ -288,10 +278,9 @@ function FORM(props) {
                 <Form.Control
                   type="date"
                   format="MM/dd/yyyy"
-                  //required pattern="\d{4}-\d{2}-\d{2}"
                   className="border border-primary border-1"
-                  value={Offer_Date}
-                  onChange={(e) => setOffer_Date(e.target.value)}
+                  value={oDate}
+                  onChange={(e) => setODate(e.target.value)}
                 />
               </Form.Group>
               <br />
@@ -303,8 +292,8 @@ function FORM(props) {
                 <Form.Control
                   type="text"
                   className="border border-primary border-1"
-                  value={Direct_Report}
-                  onChange={(e) => setDirect_Report(e.target.value)}
+                  value={directReport}
+                  onChange={(e) => setDirectReport(e.target.value)}
                 />
                 <Form.Text className="text-muted">
                   (e.g. CEO, CFO, CTO).
@@ -321,8 +310,8 @@ function FORM(props) {
                 <Form.Control
                   type="text"
                   className="border border-primary border-1"
-                  value={Office_Location}
-                  onChange={(e) => setOffice_Location(e.target.value)}
+                  value={officeLocation}
+                  onChange={(e) => setOfficeLocation(e.target.value)}
                 />
                 <Form.Text className="text-muted">
                   (City, State in which the employee will be expected to work).
@@ -337,8 +326,8 @@ function FORM(props) {
                 <Form.Control
                   type="text"
                   className="border border-primary border-1"
-                  value={Paid_Method}
-                  onChange={(e) => setPaid_Method(e.target.value)}
+                  value={paidMethod}
+                  onChange={(e) => setPaidMethod(e.target.value)}
                 />
               </Form.Group>
               <br />
@@ -352,8 +341,8 @@ function FORM(props) {
                 <Form.Control
                   type="text"
                   className="border border-primary border-1"
-                  value={Stock_opttion}
-                  onChange={(e) => setStock_opttion(e.target.value)}
+                  value={stockopttion}
+                  onChange={(e) => setStockOpttion(e.target.value)}
                 />
               </Form.Group>
               <br />
@@ -366,12 +355,11 @@ function FORM(props) {
               <Form.Group className="mb-3" controlId="formBasicn">
                 <Form.Label>Offer Expiration Date</Form.Label>
                 <Form.Control
-                  type="date"
+                  type="date "
                   format="MM/dd/yyyy"
-                  // required pattern="\d{4}-\d{2}-\d{2}"
                   className="border border-primary border-1"
-                  value={Offer_EP_datte}
-                  onChange={(e) => setOffer_EP_datte(e.target.value)}
+                  value={oExDate}
+                  onChange={(e) => setOExDate(e.target.value)}
                 />
               </Form.Group>
               <br />
@@ -383,10 +371,10 @@ function FORM(props) {
                 <Form.Control
                   type="date"
                   format="MM/dd/yyyy"
-                  //required pattern="\d{4}-\d{2}-\d{2}"
+                //   required pattern="\d{4}-\d{2}-\d{2}"
                   className="border border-primary border-1"
-                  value={Anticipated_date}
-                  onChange={(e) => setAnticipated_date(e.target.value)}
+                  value={anticipatedDate}
+                  onChange={(e) => setAnticipatedDate(e.target.value)}
                 />
               </Form.Group>
               <br />
@@ -400,8 +388,8 @@ function FORM(props) {
                 <Form.Control
                   type="text"
                   className="border border-primary border-1"
-                  value={Company_Signer}
-                  onChange={(e) => setCompany_Signer(e.target.value)}
+                  value={companySigner}
+                  onChange={(e) => setCompanySigner(e.target.value)}
                 />
                 <Form.Text className="text-muted">Full name</Form.Text>
               </Form.Group>
@@ -414,8 +402,8 @@ function FORM(props) {
                 <Form.Control
                   type="text"
                   className="border border-primary border-1"
-                  value={Signer_Title}
-                  onChange={(e) => setSigner_Title(e.target.value)}
+                  value={signerTitle}
+                  onChange={(e) => setSignerTitle(e.target.value)}
                 />
                 <Form.Text className="text-muted">
                   (e.g. President, CEO).
@@ -432,8 +420,8 @@ function FORM(props) {
                 <Form.Control
                   type="text"
                   className="border border-primary border-1"
-                  value={Signer_Email}
-                  onChange={(e) => setSigner_Email(e.target.value)}
+                  value={signerEmail}
+                  onChange={(e) => setSignerEmail(e.target.value)}
                 />
               </Form.Group>
               <br />
@@ -445,8 +433,8 @@ function FORM(props) {
                 <Form.Control
                   type="text"
                   className="border border-primary border-1"
-                  value={Prepairs_Email}
-                  onChange={(e) => setPrepairs_Email(e.target.value)}
+                  value={prepairsEmail}
+                  onChange={(e) => setPrepairsEmail(e.target.value)}
                   onfocusout
                 />
                 <Form.Text className="text-muted">
@@ -464,20 +452,13 @@ function FORM(props) {
         >
           Submit
         </Button>
-        {/* <Button onClick={onSubmitForm} variant='success'style={{align:"center"}}>submit</Button> */}
-        {/* <Button
-          onClick={onSubmitForm}
-          variant="success"
-          style={{ align: 'center' }}
-        >
-          Submit
-        </Button> */}
-        {/* <button onClick={()=>{toComponentFormatletter()}}>Component B</button> */}
-
+        
         <submitButton />
       </div>
+         
+      
     </Fragment>
   );
 }
 
-export default FORM;
+export default EditForm;
