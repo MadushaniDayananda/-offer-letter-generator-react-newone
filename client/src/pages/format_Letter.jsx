@@ -1,29 +1,20 @@
 import React, { useEffect, useState } from "react";
+import {useLocation} from 'react-router-dom';
 
 export default function Format_Letter() {
 
-  const [formatData,setFormatData]= useState([]);
+  
+  const location = useLocation();
+   
+    
 
-  const getLetter = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/letterdt");
-      const jsonData = await response.json();
-
-      setFormatData(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
-
-  useEffect(() => {
-    getLetter();
-  }, []);
-  console.log(formatData);
   return (
     <div>
              
       <h1>format</h1>
-      {getLetter}
+      {/* <div>{location.state.name}</div> */}
+      <div>{location.state.details}</div>
+
 
 
     </div>

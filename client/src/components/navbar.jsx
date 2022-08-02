@@ -16,8 +16,8 @@ function Nheading() {
           <Navbar.Brand href="#home">Logo</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link to="/" href="/">Home</Nav.Link>
-            <Nav.Link href="#form">Create</Nav.Link>
-            <Nav.Link href="#list">List</Nav.Link>
+            <Nav.Link to="/form" href="/form">Create</Nav.Link>
+            <Nav.Link to="/formList" href="/formList">List</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

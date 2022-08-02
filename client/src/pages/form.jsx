@@ -1,9 +1,11 @@
 import React, { Fragment, useState } from 'react';
+//new change
+import {Link, useNavigate} from 'react-router-dom';
 import './form.css';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 
-function FORM() {
+function FORM(props) {
     const [l_name, setL_name] = useState();
     const [Company_Name, setCompany_Name] = useState();
     const [C_ress_line1,setC_ress_line1] =useState();
@@ -23,6 +25,9 @@ function FORM() {
     const [Signer_Title,setSigner_Title] =useState();
     const [Signer_Email,setSigner_Email] =useState();
     const [Prepairs_Email,setPrepairs_Email] =useState();
+    //new change
+    const navigate = useNavigate();
+    const [details,setDetails] = useState([]);
 
 
     const onSubmitForm = async e => {
@@ -35,7 +40,10 @@ function FORM() {
                 headers: { "content-Type": "application/json" },
                 body: JSON.stringify(body)
             });
-            console.log(response);
+            const data = await response.json()
+            setDetails(data)
+            
+            console.log(data);
             console.log(l_name, Company_Name);
 
 
@@ -46,13 +54,19 @@ function FORM() {
     }
 
 
+    //new change
+   
+    const toComponentFormatletter=()=>{
+                
+                navigate('/formatletter',{state:{details}});
+          }
+
+
 
 
     return (
         <Fragment>
-            <h1 className='form1'>
-                OFFERING LETTER GENERATOR
-            </h1>
+            
             <hr />
             <Form onSubmit={onSubmitForm} >
                 <Form.Group className="mb-3" controlId="formBasicName"  >
@@ -302,7 +316,9 @@ function FORM() {
                 </Form.Group><br />
 
             </Form>
-            <Button onClick={onSubmitForm} variant='success'>submit</Button>
+            <Button onClick={onSubmitForm} variant='success'style={{align:"center"}}>submit</Button>
+            <button onClick={()=>{toComponentFormatletter()}}>Component B</button>
+            {details.l_name}
 
 
 
