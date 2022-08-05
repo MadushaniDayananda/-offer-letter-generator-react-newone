@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import './form.css';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
+import {  format } from 'date-fns';
+import Schema from 'validate';
 
 function FORM(props) {
   const [l_name, setL_name] = useState();
@@ -25,12 +27,18 @@ function FORM(props) {
   const [Signer_Title, setSigner_Title] = useState();
   const [Signer_Email, setSigner_Email] = useState();
   const [Prepairs_Email, setPrepairs_Email] = useState();
+  const [minDate, setMinDate] = useState(null);
   //new change
   const navigate = useNavigate();
   const [details, setDetails] = useState();
 
   //validation
   const [error, setError] = useState(false);
+
+  //Date validation
+  
+
+  
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -71,7 +79,7 @@ function FORM(props) {
       console.log(details);
       const id= (data.l_id);
 
-      navigate('/NewFormatLetter',`http://localhost:5000/getone/${id}`);
+      navigate('/NewFormatLetter',`http://localhost:5000//getlastindex`);
       {/*navigate('/Example');*/}
 
       // navigate('/formatletter', {
@@ -85,6 +93,11 @@ function FORM(props) {
       console.log(error.message);
     }
   };
+
+  // const handler = (e) => {
+  //   e.preventDefault();
+  //   onSubmitForm();
+  // }
 
   // const getInitialState = () => {
   //   return {
@@ -104,20 +117,28 @@ function FORM(props) {
   //   });
   // };
 
-  // const [text, enableButton] = useState('');
+  const [text, enableButton] = useState('');
 
-  // const handleTextChange = (event) => {
-  //   enableButton(event.target.value);
-  // };
+  const handleTextChange = (event) => {
+    enableButton(event.target.value);
+  };
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   alert(`Your state values: \n
-  //           text: ${text} \n
-  //           You can replace this alert with your process`);
-  // };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`Your state values: \n
+            text: ${text} \n
+            You can replace this alert with your process`);
+  };
 
- 
+  const user = new Schema({
+    l_name: {
+      
+      required: true,
+      
+    }});
+    
+
+  //new
 
   // const toComponentFormatletter=()=>{
 
@@ -159,8 +180,13 @@ function FORM(props) {
                   className="border border-primary border-1"
                   placeholder="Enter name"
                   value={l_name}
-                  onChange={(e) => setL_name(e.target.value)}
-                  required
+                  onChange={ 
+                    
+                    (e) => setL_name(e.target.value)
+                  }
+                  
+                    
+                  required='true'
                   //   onMouseOver={this.handleChangel_name}
                 />
                 <Form.Text className="text-muted">
@@ -458,7 +484,8 @@ function FORM(props) {
           </div>
         </Form>
         <Button
-          onClick={onSubmitForm}
+          onClick={
+            onSubmitForm}
           className='float-end primary'
           style={{fontSize:'16px',paddingLeft:'50px',paddingRight:'50px'}}
         >

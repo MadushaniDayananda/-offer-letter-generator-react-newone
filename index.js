@@ -89,6 +89,7 @@ app.get("/getone/:id", async (req, res) => {
     }
   });
 
+ 
 
 
   // update data
@@ -110,8 +111,27 @@ app.get("/getone/:id", async (req, res) => {
     }
   });
 
+ 
+  //offerlistForm
+  app.put("/letterdt/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { l_name,company_name,c_ress_line1,c_address_line2,c_city,c_email_ress,p_employees_name,p_employees_email,offer_date,direct_report,office_location,paid_method,stock_opttion,offer_ep_datte,anticipated_date,company_signer,signer_title,signer_email,prepairs_email } = req.body;
+      const updateTodo = await pool.query(
+        "UPDATE letterdt SET l_name=$1, company_name=$2 ,c_ress_line1=$3,c_address_line2=$4,c_city=$5,c_email_ress=$6,p_employees_name=$7,p_employees_email=$8,offer_date=$9,direct_report=$10,office_location=$11,paid_method=$12, stock_opttion=$13,offer_ep_datte=$14,anticipated_date=$15,company_signer=$16,signer_title=$17,signer_email=$18,prepairs_email=$19 WHERE  l_id = $20",
+        [l_name,company_name,c_ress_line1,c_address_line2,c_city,c_email_ress,p_employees_name,p_employees_email,offer_date,direct_report,office_location,paid_method,stock_opttion,offer_ep_datte,anticipated_date,company_signer,signer_title,signer_email,prepairs_email, id]
+      );
+  
+      res.json("Todo was updated!");
+    } catch (err) {
+      console.error(err.message);
+    }
+  });
+
 
 app.listen(5000,() =>{
     console.log("app server is start on port 5000")
 
 });
+
+

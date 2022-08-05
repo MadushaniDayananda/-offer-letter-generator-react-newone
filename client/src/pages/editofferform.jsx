@@ -1,17 +1,12 @@
-import React, { Fragment, useState, useEffect } from 'react';
-//new change
-import { Link, useNavigate } from 'react-router-dom';
-import './form.css';
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 
-
-function EditForm() {
- 
-  //new change
-  const navigate = useNavigate();
+const EditOffer = (props) => {
+  const [show, setShow] = useState(false);
   const [lname,setLName] = useState();
-  const[id,setId]=useState();
   const[CompanyName,setCompanyName]=useState();
   const[cAddLine1,setCAddLine1]=useState();
   const[cAddressLine2,setCAddressLine2]=useState();
@@ -30,115 +25,87 @@ function EditForm() {
   const[signerTitle,setSignerTitle]=useState();
   const[signerEmail,setSignerEmail]=useState();
   const[prepairsEmail,setPrepairsEmail]=useState();
+  const navigate = useNavigate();
+  
+  
 
-  
-  
-  
-
-  const onSubmitForm = async (e) => {
-    console.log("test");
+  const handleClose = () => {
     
+    setShow(false);
+    setLName(props.letterdt.l_name);
+    setCompanyName(props.letterdt.company_name);
+  };
+  const handleShow = () => setShow(true);
+
+  //Editting existing todos
+  const handleEdit = async (e) => {
+    e.preventDefault();
     try {
-        const body = {
-            l_id: id,
-            l_name:lname,
-            company_name:CompanyName,
-            c_ress_line1:cAddLine1,
-            c_address_line2:cAddressLine2,
-            c_city:city,
-            c_email_ress:cEmail,
-            p_employees_name:eName,
-            p_employees_email:eEmail,
-            offer_date:oDate,
-            direct_report:directReport,
-            office_location:officeLocation,
-            paid_method:paidMethod,
-            stock_opttion:stockopttion,
-            offer_ep_datte:oExDate,
-            anticipated_date:anticipatedDate,
-            company_signer:companySigner,
-            signer_title:signerTitle,
-            signer_email:signerEmail,
-            prepairs_email:prepairsEmail,
-        };
-            console.log(body);
-        const response = await fetch(
-          `http://localhost:5000/update`,
-          {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body)
-          }
-          
-        );
-        console.log('clicked');
-        
-  
+      const body = { 
+        l_name:lname,
+        company_name:CompanyName,
+        c_ress_line1:cAddLine1,
+        c_address_line2:cAddressLine2,
+        c_city:city,
+        c_email_ress:cEmail,
+        p_employees_name:eName,
+        p_employees_email:eEmail,
+        offer_date:oDate,
+        direct_report:directReport,
+        office_location:officeLocation,
+        paid_method:paidMethod,
+        stock_opttion:stockopttion,
+        offer_ep_datte:oExDate,
+        anticipated_date:anticipatedDate,
+        company_signer:companySigner,
+        signer_title:signerTitle,
+        signer_email:signerEmail,
+        prepairs_email:prepairsEmail };
+      const response = await fetch(
+        `http://localhost:5000/letterdt/${props.letterdt.l_id}`,
+        {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
        
-      } catch (err) {
-        console.error(err.message);
-      }
-   
-      navigate('/NewFormatLetter');
-      console.log(anticipatedDate);
-
-    };
-  
-    
-  
-
- 
-
-  useEffect(()=>{
-    const getldetails = async (id)=>{
-        const res = await fetch(`http://localhost:5000/getlastindex`);
-        // const data = await res.json();
-        // setFormData(data);
-        // console.log(formData);
-        const getdata = await res.json();
-        setLName(getdata.l_name);
-        setId(getdata.l_id);
-        setCompanyName(getdata.company_name);
-        setCAddLine1(getdata.c_ress_line1);
-        setCAddressLine2(getdata.c_address_line2);
-        setCity(getdata.c_city);
-        setCEmail(getdata.c_email_ress);
-        setEName(getdata.p_employees_name);
-        setEEmail(getdata.p_employees_email);
-        setODate(getdata.offer_date);
-        setDirectReport(getdata.direct_report);
-        setOfficeLocation(getdata.office_location);
-        setPaidMethod(getdata.paid_method);
-        setStockOpttion(getdata.stock_opttion);
-        setOExDate(getdata.offer_ep_datte);
-        setAnticipatedDate(getdata.anticipated_date);
-        setCompanySigner(getdata.company_signer);
-        setSignerTitle(getdata.signer_title);
-        setSignerEmail(getdata.signer_email);
-        setPrepairsEmail(getdata.prepairs_email);
-        
-        
-        console.log(getdata);
-        console.log(getdata.anticipated_date);
-        
-        
-        
-        
-        
+      
+      navigate('/formatletter',{state:{lname,CompanyName}});
+    } catch (err) {
+      console.error(err.message);
     }
-    console.log(anticipatedDate);
-   
-    getldetails();
-},[]);
-
+  };
 
   return (
-    <Fragment>
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        Edit
+      </Button>
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        dialogClassName="modal-900w"
+        aria-labelledby="example-custom-modal-styling-title"
         
-        <div className="mLarge">
+      >
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {/* <input
+            type="text"
+            className="form-control"
+            placeholder="Add todo"
+            value={l_name}
+            onChange={(e) => setl_name(e.target.value)}
+          /> */}
+           <div className="mLarge2">
         <hr />
-        <Form onSubmit={onSubmitForm}>
-          <div className='row'>
+        <Form onSubmit={handleClose}>
+          <div className='col'>
           <h1 className="comA">General Details</h1>
             <div className='col'>
               <Form.Group className="mb-3" controlId="formBasicName">
@@ -181,7 +148,7 @@ function EditForm() {
           {/* </div>
           </div> */}
 
-          <div className="row">
+          <div className="col">
           <h1 className="comA">Company Details</h1>
             <div className="col">
               <Form.Group className="mb-3" controlId="formBasicA1">
@@ -445,20 +412,21 @@ function EditForm() {
             </div>
           </div>
         </Form>
-        <Button
-          onClick={onSubmitForm}
-          className='float-end primary'
-          style={{fontSize:'16px',paddingLeft:'50px',paddingRight:'50px'}}
-        >
-          Submit
-        </Button>
         
-        <submitButton />
       </div>
          
-      
-    </Fragment>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={(e) => handleEdit(e)}>
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
-}
+};
 
-export default EditForm;
+export default EditOffer;

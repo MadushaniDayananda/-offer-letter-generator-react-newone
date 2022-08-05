@@ -43,4 +43,38 @@
   margin-right: 15vw;
   margin-bottom: 10vh;
 }
+.div1{
+  margin-top: 150px;
+  margin-right: 200px;
+  border: 3px outset rgb(14, 13, 13);
+  background-color: rgb(230, 173, 208);
+  text-align: center;
+  width: 30vw;
+  height: 15vh;
+
+}
+.div2{
+  margin-top: 150px;
+  margin-right: 200px;
+  border: 3px outset rgb(14, 13, 13);
+  background-color: rgb(173, 211, 230);
+  text-align: center;
+  width: 30vw;
+  height: 15vh;
+
+}
+
+.mLarge2 {
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-bottom: 10vh;
+  width: 40vw;
+}
+
+.mLarge1{
+  width: 4000vw;
+
+}
+
+
 

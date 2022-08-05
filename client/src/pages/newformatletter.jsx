@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-// import { jsPDF } from "jspdf";
+import { jsPDF } from "jspdf";
 import ReactDOMServer from "react-dom/server";
 import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
@@ -59,15 +59,15 @@ function NewFormatLetter() {
 
     
 
-    // const PDFGenerator=()=>{
+    const PDFGenerator=()=>{
 
-    //   // var doc= new jsPDF('landscape','px','a4','false');
-    //   // doc.addPage()
-    //   const doc = new jsPDF();
-    //   doc.text(txt, 10, 10);
-    //   doc.save("a4.pdf");
+      var doc= new jsPDF('landscape','px','a4','false');
+      doc.addPage()
+      // const doc = new jsPDF();
+      doc.text("hello", 10, 10);
+      doc.save("a4.pdf");
       
-    // };
+    };
 
 
 
@@ -206,11 +206,16 @@ function NewFormatLetter() {
         </p>
       
       
-        {"                                              "}
-        {/* <Button className='ml-10' onClick={PDFGenerator}>Download Pdf</Button> */}
 
         {" "}
-        <Button onClick={editletter}>EDIT</Button>
+        <Button
+        className='float-end primary'
+        style={{fontSize:'16px',paddingLeft:'43px',paddingRight:'50px'}}
+         onClick={editletter}>EDIT</Button>{" "}<br/><br/>
+
+       {"     "}
+        <Button className='float-end primary'
+        style={{fontSize:'16px'}} onClick={PDFGenerator}>Download Pdf</Button>
 
       </div>
     {/* print pdf */}
@@ -218,6 +223,8 @@ function NewFormatLetter() {
       <NewFormatLetter ref={componentRef} />
       <button onClick={handlePrint}>Print this out!</button>
     </div> */}
+    
+   
     </div>
     
     </Fragment>

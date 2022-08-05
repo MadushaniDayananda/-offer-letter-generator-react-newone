@@ -4,9 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import './form.css';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
+import './form.css';
 
-
-function EditForm() {
+function EditOfferListForm() {
  
   //new change
   const navigate = useNavigate();
@@ -91,7 +91,7 @@ function EditForm() {
 
   useEffect(()=>{
     const getldetails = async (id)=>{
-        const res = await fetch(`http://localhost:5000/getlastindex`);
+        const res = await fetch(`http://localhost:5000//getlastindex`);
         // const data = await res.json();
         // setFormData(data);
         // console.log(formData);
@@ -461,4 +461,4 @@ function EditForm() {
   );
 }
 
-export default EditForm;
+export default EditOfferListForm;
