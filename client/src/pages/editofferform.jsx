@@ -117,16 +117,17 @@ const EditOffer = (props) => {
 
   return (
     <>
+    
       <Button variant="primary" onClick={handleShow}>
         Edit
       </Button>
-
+      
       <Modal
         show={show}
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
-        dialogClassName="modal-900w"
+        className=" "
         aria-labelledby="example-custom-modal-styling-title"
       >
         <Modal.Header closeButton>
@@ -462,6 +463,7 @@ const EditOffer = (props) => {
           </Button>
         </Modal.Footer>
       </Modal>
+      
     </>
   );
 };
