@@ -6,6 +6,7 @@ import FormList from './pages/form_list';
 import FormatLetter from './pages/format_Letter';
 import NewFormatLetter from './pages/newformatletter';
 import EditForm from './pages/editform';
+import EditOffer from './pages/editofferform'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/formatletter" element={<FormatLetter />} />
         <Route path="/NewFormatLetter" element={<NewFormatLetter/>} />
         <Route path="/EditForm" element={<EditForm/>} />
+        <Route path="/EditOffer" element={<EditOffer/>} />
        
       </Routes>
     </BrowserRouter>
