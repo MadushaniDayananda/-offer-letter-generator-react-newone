@@ -29,6 +29,19 @@ const EditOffer = (props) => {
 
   const handleClose = () => {
     setShow(false);
+   
+  };
+
+  const Letter=async (id) => {
+    const res = await fetch(
+      `http://localhost:5000/delete/${id}`,
+      {
+        method: 'Delete',
+        headers: { 'Content-Type': 'application/json' },
+      });
+  };
+  const handleShow = () => {
+    setShow(true);
     setLName(props.letterdt.l_name);
     setCompanyName(props.letterdt.company_name);
     setCAddLine1(props.letterdt.c_ress_line1);
@@ -48,10 +61,7 @@ const EditOffer = (props) => {
     setSignerTitle(props.letterdt.signer_title);
     setSignerEmail(props.letterdt.signer_email);
     setPrepairsEmail(props.letterdt.prepairs_email);
-
-
-  };
-  const handleShow = () => setShow(true);
+  }
 
   //Editting existing todos
   const handleEdit = async (e) => {
@@ -60,66 +70,82 @@ const EditOffer = (props) => {
     try {
       const body = {
         l_name: lname,
-        company_name: CompanyName,
-        c_ress_line1: cAddLine1,
-        c_address_line2: cAddressLine2,
-        c_city: city,
-        c_email_ress: cEmail,
-        p_employees_name: eName,
-        p_employees_email: eEmail,
-        offer_date: oDate,
-        direct_report: directReport,
-        office_location: officeLocation,
-        paid_method: paidMethod,
-        stock_opttion: stockopttion,
-        offer_ep_datte: oExDate,
-        anticipated_date: anticipatedDate,
-        company_signer: companySigner,
-        signer_title: signerTitle,
-        signer_email: signerEmail,
-        prepairs_email: prepairsEmail,
+        Company_Name: CompanyName,
+        C_ress_line1: cAddLine1,
+        C_Address_Line2: cAddressLine2,
+        c_City: city,
+        C_Email_ress: cEmail,
+        P_Employees_Name: eName,
+        P_Employees_Email: eEmail,
+        Offer_Date: oDate,
+        Direct_Report: directReport,
+        Office_Location: officeLocation,
+        Paid_Method: paidMethod,
+        Stock_opttion: stockopttion,
+        Offer_EP_datte: oExDate,
+        Anticipated_date: anticipatedDate,
+        Company_Signer: companySigner,
+        Signer_Title: signerTitle,
+        Signer_Email: signerEmail,
+        Prepairs_Email: prepairsEmail,
       };
-      const response = await fetch(
-        `http://localhost:5000/letterdt/${props.letterdt.l_id}`,
-        {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        }
-      );
+      // const response = await fetch(
+        // `http://localhost:5000/letterdt/${props.letterdt.l_id}`,
+        // {
+        //   method: 'PUT',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify(body),
+        // }
+        const response = await fetch('http://localhost:5000/letterdt', {
+          method: 'POST',
+          headers: { 'content-Type': 'application/json' },
+          body: JSON.stringify(body),});
 
-      navigate('/formatletter', {
-        state: {
-          lname,
-          CompanyName,
-          cAddLine1,
-          city,
-          cEmail,
-          eName,
-          eEmail,
-          oDate,
-          directReport,
-          officeLocation,
-          paidMethod,
-          stockopttion,
-          oExDate,
-          anticipatedDate,
-          companySigner,
-          signerTitle,
-          signerEmail,
-          prepairsEmail,
-        },
-      });
+
+        
+       
+     
+      navigate('/NewFormatLetter',) 
+      //   state: {
+      //     lname,
+      //     CompanyName,
+      //     cAddLine1,
+      //     city,
+      //     cEmail,
+      //     eName,
+      //     eEmail,
+      //     oDate,
+      //     directReport,
+      //     officeLocation,
+      //     paidMethod,
+      //     stockopttion,
+      //     oExDate,
+      //     anticipatedDate,
+      //     companySigner,
+      //     signerTitle,
+      //     signerEmail,
+      //     prepairsEmail,
+      //   },
+      // });
+      Letter(props.letterdt.l_id);
+      console.log(props.letterdt.l_id);
     } catch (err) {
       console.error(err.message);
     }
   };
 
+  
+
+
   return (
     <>
     
-      <Button variant="primary" onClick={handleShow}>
-        Edit
+      <Button variant="primary" style={{
+            fontSize: '16px',
+            paddingLeft: '2px',
+            paddingRight: '1px',
+          }} onClick={handleShow}>
+        Edit & Download
       </Button>
       
       <Modal
@@ -127,13 +153,15 @@ const EditOffer = (props) => {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
-        className=" "
-        aria-labelledby="example-custom-modal-styling-title"
+        size="lg"
+        // dialogClassName="modal-90w"
+        // aria-labelledby="example-custom-modal-styling-title"
       >
         <Modal.Header closeButton>
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          
           {/* <input
             type="text"
             className="form-control"
@@ -451,15 +479,16 @@ const EditOffer = (props) => {
                   <br />
                 </div>
               </div>
+              
             </Form>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+        <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
           <Button variant="primary" onClick={(e) => handleEdit(e)}>
-            Submit
+            Submit & Download
           </Button>
         </Modal.Footer>
       </Modal>

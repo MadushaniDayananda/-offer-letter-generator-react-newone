@@ -1,110 +1,122 @@
-import React, { Fragment } from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
-import './form.css';
 
-function NewFormatLetter() {
-  const [formData, setFormData] = useState([]);
+const PrintOffer = (props) => {
+  const [show, setShow] = useState(false);
+  const [lname, setLName] = useState();
+  const [CompanyName, setCompanyName] = useState();
+  const [cAddLine1, setCAddLine1] = useState();
+  const [cAddressLine2, setCAddressLine2] = useState();
+  const [city, setCity] = useState();
+  const [cEmail, setCEmail] = useState();
+  const [eName, setEName] = useState();
+  const [eEmail, setEEmail] = useState();
+  const [oDate, setODate] = useState();
+  const [directReport, setDirectReport] = useState();
+  const [officeLocation, setOfficeLocation] = useState();
+  const [paidMethod, setPaidMethod] = useState();
+  const [stockopttion, setStockOpttion] = useState();
+  const [oExDate, setOExDate] = useState();
+  const [anticipatedDate, setAnticipatedDate] = useState();
+  const [companySigner, setCompanySigner] = useState();
+  const [signerTitle, setSignerTitle] = useState();
+  const [signerEmail, setSignerEmail] = useState();
+  const[id,setId]=useState();
   const navigate = useNavigate();
-  useEffect(() => {
-    const getldetails = async (id) => {
-      const res = await fetch(`http://localhost:5000/getlastindex`);
-      // const data = await res.json();
-      // setFormData(data);
-      // console.log(formData);
-      const getdata = await res.json();
-      setFormData(getdata);
-      console.log(getdata);
-    };
 
-    getldetails();
-  }, []);
-
-  const editletter = async (id) => {
-    navigate('/EditForm', `http://localhost:5000/getlastindex`);
-    // navigate('/EditForm',formData);
+  const handleClose = () => {
+    setShow(false);
   };
-  //jspdf
-  const properties = { header: 'Acme' };
-  //print
-
-  // const componentRef = useRef();
-  // const handlePrint = useReactToPrint({
-  //   content: () => componentRef.current,
-  // });
-
-  const PDFGenerator = () => {
-    console.log('clicked');
-
-    navigate('/Example');
+  const handleShow = () => {
+    setShow(true);
+    setLName(props.letterdt.l_name);
+    setCompanyName(props.letterdt.company_name);
+    setCAddLine1(props.letterdt.c_ress_line1);
+    setCAddressLine2(props.letterdt.c_address_line2);
+    setCity(props.letterdt.c_city);
+    setCEmail(props.letterdt.c_email_ress);
+    setEName(props.letterdt.p_employees_name);
+    setEEmail(props.letterdt.p_employees_email);
+    setODate(props.letterdt.offer_date);
+    setDirectReport(props.letterdt.direct_report);
+    setOfficeLocation(props.letterdt.office_location);
+    setPaidMethod(props.letterdt.paid_method);
+    setStockOpttion(props.letterdt.stock_opttion);
+    setOExDate(props.letterdt.offer_ep_datte);
+    setAnticipatedDate(props.letterdt.anticipated_date);
+    setCompanySigner(props.letterdt.company_signer);
+    setSignerTitle(props.letterdt.signer_title);
+    setSignerEmail(props.letterdt.signer_email);
+    setId(props.letterdt.l_id);
+   
   };
 
-  const handle = () => {
-    return (
-      <div>
-        <Button
-          className="float-end primary"
-          style={{
-            fontSize: '16px',
-            paddingLeft: '43px',
-            paddingRight: '50px',
-          }}
-          onClick={editletter}
-        >
-          EDIT
-        </Button>{' '}
-        <br />
-        <br />
-        {'     '}
-        <Button
-          className="float-end primary"
-          style={{ fontSize: '16px' }}
-          onClick={PDFGenerator}
-        >
-          Download Pdf
-        </Button>
-      </div>
-    );
-  };
+  
 
+ 
+ 
   return (
-    <Fragment>
-      <div className="letterfont">
+    <>
+      <Button variant="success" onClick={handleShow}>
+        View
+      </Button>
+     
+
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        size="lg"
+        // dialogClassName="modal-90w"
+        // aria-labelledby="example-custom-modal-styling-title"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div >
+         
+   
+          
+            <div className="letterfont">
         <div className="letterdiv">
-          {/* {formData.l_name} */}
-          <h3 className='text-center'>{formData.l_name}</h3>
+          {/* {l_name} */}
+          <h3 className='text-center'>{lname}</h3>
           <div className="m-5">
-            <p className="text-uppercase">{formData.company_name}</p>
-            <p>{formData.c_ress_line1}</p>
-            <p>{formData.c_address_line2}</p>
-            <p>{formData.c_city}</p>
-            <p>{formData.c_email_ress}</p>
+            <p className="text-uppercase">{CompanyName}</p>
+            <p>{cAddLine1}</p>
+            <p>{cAddressLine2}</p>
+            <p>{city}</p>
+            <p>{cEmail}</p>
           </div>
           <div className="m-5">
-            {/* <p>{new Intl.DateTimeFormat('en-GB').format(new Date(formData.offer_date))}</p> */}
-            {moment(formData.offer_date).format('DD-MM-YYYY')}
-            <p>{formData.p_employees_name}</p>
-            <p>{formData.p_employees_email}</p>
+            {/* <p>{oDate}</p> */}
+            <p>{moment(oDate).format('DD-MM-YYYY')}</p>
+            {/* <p>{new Intl.DateTimeFormat('en-GB').format(new Date(oDate))}</p>  */}
+            <p>{eName}</p>
+            <p>{eEmail}</p>
             <p>
               <b>Re: Employment Terms</b>
             </p>
-            <p>Dear {formData.p_employees_name} ,</p>
+            <p>Dear {eName} ,</p>
             <p >
-              {formData.company_name} (the "Company") is pleased to offer you
-              the position of {formData.stock_opttion}, on the following terms.
+              {CompanyName} (the "Company") is pleased to offer you
+              the position of {stockopttion}, on the following terms.
               <br />
            
-              You will be responsible for {formData.stock_opttion}, and will
-              report to the {formData.direct_report}. You will work at our
-              office located in {formData.office_location}. The Company may
+              You will be responsible for {stockopttion}, and will
+              report to the {directReport}. You will work at our
+              office located in {officeLocation}. The Company may
               change your position, duties, and work location from time to time
               in its discretion. <br />
               <br />
               You will be paid a starting salary at the Rs.
-              {formData.paid_method} per month, less payroll deductions and
+              {paidMethod} per month, less payroll deductions and
               withholdings, paid on the Company's normal payroll schedule.{' '}
               <br />
               During your employment, you will be eligible to participate in the
@@ -176,10 +188,10 @@ function NewFormatLetter() {
             <br />
             Please sign and date this letter, and the enclosed Employee
             Confidential Information and Inventions Assignment Agreement and
-            return them to me by {moment(formData.offer_ep_datte).format('DD-MM-YYYY')} if you wish to accept
+            return them to me by {moment(oExDate).format('DD-MM-YYYY')} if you wish to accept
             employment at the Company under the terms described above. If you
             accept our offer, we would like you to start on{' '}
-            {moment(formData.anticipated_date).format('DD-MM-YYYY')}.
+            {moment(anticipatedDate).format('DD-MM-YYYY')}.
             <br />
             We look forward to your favorable reply and to a productive and
             enjoyable work relationship.
@@ -187,26 +199,26 @@ function NewFormatLetter() {
             Sincerely,
             <br />
             <br />
-            {formData.company_name}
+            {CompanyName}
             <br />
             <br />
             <br />
             ____________________________________________ <br />
-            {formData.company_signer}, {formData.direct_report}
+            {companySigner}, {signerTitle}
             <br />
-            {formData.signer_email} <br />
+            {signerEmail} <br />
             <br />
             <b> Accepted: </b>
             <br />
             <div class="row text-center">
               <div class="col">
                 ____________________________________________ <br />
-                {formData.p_employees_name} <br />
+                {eName} <br />
                 <br />
               </div>
               <div class="col">
                 ____________________________________________ <br />
-                {moment(formData.offer_date).format('DD-MM-YYYY')}
+                {moment(oDate).format('DD-MM-YYYY')}
                 <br />
                 <br />
               </div>
@@ -239,10 +251,19 @@ function NewFormatLetter() {
           </p>
         </div></div>
       </div>
-
-      {handle()}
-    </Fragment>
+          </div>
+        </Modal.Body>
+        <Modal.Footer><Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          
+          </Modal.Footer>
+     
+      </Modal>
+      
+      
+    </>
   );
-}
+};
 
-export default NewFormatLetter;
+export default PrintOffer;

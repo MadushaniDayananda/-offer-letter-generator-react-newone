@@ -77,5 +77,26 @@
 
 }
 
+.letterdiv{
+  /* border-style: solid; */
+  size: a 4px;
+  margin-left: 8vw;
+  margin-right: 5vw;
+  margin-bottom: 10vh;
+  border-style: solid;
+ 
+
+}
+.letterfont{
+  font-size: 0.3cm;
+  font-display:initial;
+  text-align: justify;
+  
+}
+
+
+
+
+
 
 

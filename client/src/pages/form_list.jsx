@@ -3,11 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Navigate } from 'react-router-dom';
 import { Link, useNavigate } from 'react-router-dom';
-import EditOfferListForm from './Editformlist';
 import Popup from 'reactjs-popup';
 import Table from 'react-bootstrap/Table';
 import './form.css';
 import EditOffer from './editofferform';
+import PrintOffer from './printletter'
+
 
 const FormList = () => {
   const [list, setList] = useState([]);
@@ -60,62 +61,39 @@ const FormList = () => {
   return (
     <Fragment>
       {' '}
-      <Table striped bordered hover variant="warning">
-        <thead>
-          <tr className="table-dark">
-            <th>Description</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {list.map((letterdt) => (
-            <tr key={letterdt.l_id}  className="rw">
-              <td>{letterdt.l_name}</td>
-              {/* <td>
+      <div className="mLarge">
+        <Table striped bordered hover variant="warning">
+          <thead>
+            <tr className="table-dark">
+              <th>Description</th>
+              <th className="text-center">Edit</th>
+              <th className="text-center">Delete</th>
+              <th className="text-center">View</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            {list.map((letterdt) => (
+              <tr key={letterdt.l_id} className="rw">
+                <td>
+                  {letterdt.l_name + ' [ ' + letterdt.stock_opttion + ' ]'}
+                </td>
+                {/* <td>
                 <Editletterdt letterdt={letterdt} />
               </td> */}
-              <td>
-                {/* <button
-                  className="btn btn-primary"
-                  onClick={() => editletter(letterdt.l_id)}
-                >
-                  Edit
-                </button> */}
-
-                {/*USE PROPUP*/}
-                {/* <Popup
-                  trigger={<button className="btn btn-primary" > Edit</button>}
-                  position="center"
-                >
-                  <div className="div2">
-                    <div>Do you want to edit this offer letter?</div>
-                    <div>
-                      <Button
-                        variant="primary"
-                        className="mt-2"
-                        onClick={() => editletter(letterdt.l_id)}
-                        // onClick={<EditOfferListForm/>}
-                      >
-                        YES
-                      </Button>
-                      
-                      
-                    </div>
-                   
-                  </div>
-                </Popup> */}
-                <EditOffer letterdt={letterdt}/>
-              </td>
-              <td>
-                {/* <button
+                <td className="text-center">
+                 
+                  <EditOffer letterdt={letterdt} />
+                </td>
+                <td className="text-center">
+                  {/* <button
                   className="btn btn-danger"
                   onClick={() => deleteletter(letterdt.l_id)}
                 >
                   Delete
                 </button> */}
 
-                {/* <Button variant="danger" onClick={() => handleShow(letterdt.l_id)} data-bs-toggle="modal"
+                  {/* <Button variant="danger" onClick={() => handleShow(letterdt.l_id)} data-bs-toggle="modal"
                     data-bs-target={`#id${letterdt.l_id}`}>
                     Delete
                   </Button>
@@ -147,7 +125,7 @@ const FormList = () => {
                       <Button variant="primary" id={`${letterdt.l_id}`} onClick={() => deleteletter(letterdt.l_id)}>Yes</Button>
                     </Modal.Footer>
                   </Modal> */}
-                {/* <button
+                  {/* <button
                       type="button"
                       class="btn btn-warning"
                       data-toggle="modal"
@@ -197,31 +175,35 @@ const FormList = () => {
                     </Modal.Footer>
                     </Modal> */}
 
-                <Popup
-                  trigger={<button className="btn btn-danger"> Delete</button>}
-                  position="center"
-                >
-                  <div className="div1">
-                    <div>Are you sure to delete this offer letter?</div>
-                    <div>
-                      <Button
-                        variant="danger"
-                        className="mt-2"
-                        onClick={() => deleteletter(letterdt.l_id)}
-                      >
-                        YES
-                      </Button>
-                      
-                      
+                  <Popup
+                    trigger={
+                      <button className="btn btn-danger"> Delete</button>
+                    }
+                    position="center"
+                  >
+                    <div className="div1">
+                      <div>Are you sure to delete this offer letter?</div>
+                      <div>
+                        <Button
+                          variant="danger"
+                          className="mt-2"
+                          onClick={() => deleteletter(letterdt.l_id)}
+                        >
+                          YES
+                        </Button>
+                      </div>
                     </div>
-                   
-                  </div>
-                </Popup>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+                  </Popup>
+                </td>
+                <td>
+                  <PrintOffer letterdt={letterdt}/>
+                </td>
+               
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
     </Fragment>
   );
 };

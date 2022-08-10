@@ -92,9 +92,6 @@ function EditForm() {
   useEffect(()=>{
     const getldetails = async (id)=>{
         const res = await fetch(`http://localhost:5000/getlastindex`);
-        // const data = await res.json();
-        // setFormData(data);
-        // console.log(formData);
         const getdata = await res.json();
         setLName(getdata.l_name);
         setId(getdata.l_id);
@@ -121,10 +118,7 @@ function EditForm() {
         console.log(getdata);
         console.log(getdata.anticipated_date);
         
-        
-        
-        
-        
+     
     }
     console.log(anticipatedDate);
    
