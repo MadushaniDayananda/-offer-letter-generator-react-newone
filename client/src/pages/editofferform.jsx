@@ -171,16 +171,18 @@ const EditOffer = (props) => {
           /> */}
           <div className="mLarge2">
             <hr />
-            <Form onSubmit={handleClose}>
+            <Form onSubmit={handleEdit}>
               <div className="col">
                 <h1 className="comA">General Details</h1>
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicName">
-                    <Form.Label>Letter Name</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Letter Name</Form.Label>
                     <Form.Control
                       name="lName"
                       type="text"
-                      className="border border-primary border-1"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
                       placeholder="Enter name"
                       value={lname}
                       onChange={(e) => setLName(e.target.value)}
@@ -197,10 +199,13 @@ const EditOffer = (props) => {
                 {/* <div className="col"> */}
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label>Company Name</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Company Name</Form.Label>
                     <Form.Control
                       type="text"
-                      className="border border-primary border-1"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={CompanyName}
                       onChange={(e) => setCompanyName(e.target.value)}
                     />
@@ -219,10 +224,13 @@ const EditOffer = (props) => {
                 <h1 className="comA">Company Details</h1>
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicA1">
-                    <Form.Label>Address line 1</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Address line 1</Form.Label>
                     <Form.Control
                       type="text"
-                      className="border border-primary border-1"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={cAddLine1}
                       onChange={(e) => setCAddLine1(e.target.value)}
                     />
@@ -232,10 +240,13 @@ const EditOffer = (props) => {
 
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicA2">
-                    <Form.Label>Addres line 2</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Addres line 2</Form.Label>
                     <Form.Control
                       type="text"
-                      className="border border-primary border-1"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={cAddressLine2}
                       onChange={(e) => setCAddressLine2(e.target.value)}
                     />
@@ -247,10 +258,13 @@ const EditOffer = (props) => {
               <div className="row">
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicA3">
-                    <Form.Label>City</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">City</Form.Label>
                     <Form.Control
                       type="text"
-                      className="border border-primary border-1"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
                     />
@@ -259,10 +273,13 @@ const EditOffer = (props) => {
                 </div>
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label>Email Address</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Email Address</Form.Label>
                     <Form.Control
                       type="text"
-                      className="border border-primary border-1"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={cEmail}
                       onChange={(e) => setCEmail(e.target.value)}
                     />
@@ -278,10 +295,13 @@ const EditOffer = (props) => {
               <div className="row">
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label>Prospective Employee's Name</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Prospective Employee's Name</Form.Label>
                     <Form.Control
                       type="text"
-                      className="border border-primary border-1"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={eName}
                       onChange={(e) => setEName(e.target.value)}
                     />
@@ -292,10 +312,12 @@ const EditOffer = (props) => {
 
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label>Prospective Employee's Email</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Prospective Employee's Email</Form.Label>
                     <Form.Control
                       type="email"
-                      className="border border-primary border-1"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
                       required
                       value={eEmail}
                       onChange={(e) => setEEmail(e.target.value)}
@@ -307,12 +329,15 @@ const EditOffer = (props) => {
 
               <div className="row">
                 <div className="col">
-                  <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label>Offer Date</Form.Label>
+                <Form.Group className="mb-3" controlId="formBasicn">
+                    <Form.Label for="validationServer03" className="form-label">Offer Date</Form.Label>
                     <Form.Control
-                      type="date"
+                      type="date "
                       format="MM/dd/yyyy"
-                      className="border border-primary border-1"
+                      c className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={oDate}
                       onChange={(e) => setODate(e.target.value)}
                     />
@@ -322,10 +347,13 @@ const EditOffer = (props) => {
 
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label>Direct Report</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Direct Report</Form.Label>
                     <Form.Control
                       type="text"
-                      className="border border-primary border-1"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={directReport}
                       onChange={(e) => setDirectReport(e.target.value)}
                     />
@@ -340,10 +368,13 @@ const EditOffer = (props) => {
               <div className="row">
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label>Office Location</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Office Location</Form.Label>
                     <Form.Control
                       type="text"
-                      className="border border-primary border-1"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={officeLocation}
                       onChange={(e) => setOfficeLocation(e.target.value)}
                     />
@@ -357,10 +388,13 @@ const EditOffer = (props) => {
 
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label>Salary Per Month</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Salary Per Month</Form.Label>
                     <Form.Control
                       type="text"
-                      className="border border-primary border-1"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={paidMethod}
                       onChange={(e) => setPaidMethod(e.target.value)}
                     />
@@ -372,10 +406,13 @@ const EditOffer = (props) => {
               <div className="row">
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label>Position</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Position</Form.Label>
                     <Form.Control
                       type="text"
-                      className="border border-primary border-1"
+                      c className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={stockopttion}
                       onChange={(e) => setStockOpttion(e.target.value)}
                     />
@@ -388,11 +425,15 @@ const EditOffer = (props) => {
               <div className="row">
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label>Offer Expiration Date</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Offer Expiration Date</Form.Label>
                     <Form.Control
                       type="date "
                       format="MM/dd/yyyy"
-                      className="border border-primary border-1"
+                      c className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
+                      min={oDate}
                       value={oExDate}
                       onChange={(e) => setOExDate(e.target.value)}
                     />
@@ -401,13 +442,15 @@ const EditOffer = (props) => {
                 </div>
 
                 <div className="col">
-                  <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label>Anticipated Start Date</Form.Label>
+                <Form.Group className="mb-3" controlId="formBasicn">
+                    <Form.Label for="validationServer03" className="form-label">Antipated Start Date</Form.Label>
                     <Form.Control
-                      type="date"
+                      type="date "
                       format="MM/dd/yyyy"
-                      //   required pattern="\d{4}-\d{2}-\d{2}"
-                      className="border border-primary border-1"
+                      c className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={anticipatedDate}
                       onChange={(e) => setAnticipatedDate(e.target.value)}
                     />
@@ -419,10 +462,13 @@ const EditOffer = (props) => {
               <div className="row">
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label>Company Signer</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Company Signer</Form.Label>
                     <Form.Control
                       type="text"
-                      className="border border-primary border-1"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={companySigner}
                       onChange={(e) => setCompanySigner(e.target.value)}
                     />
@@ -433,10 +479,13 @@ const EditOffer = (props) => {
 
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label>Signer's Title</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Signer's Title</Form.Label>
                     <Form.Control
                       type="text"
-                      className="border border-primary border-1"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={signerTitle}
                       onChange={(e) => setSignerTitle(e.target.value)}
                     />
@@ -451,10 +500,13 @@ const EditOffer = (props) => {
               <div className="row">
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label>Signer's Email Address</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Signer's Email Address</Form.Label>
                     <Form.Control
                       type="text"
-                      className="border border-primary border-1"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={signerEmail}
                       onChange={(e) => setSignerEmail(e.target.value)}
                     />
@@ -464,10 +516,13 @@ const EditOffer = (props) => {
 
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label>Preparer's Email Address</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">Preparer's Email Address</Form.Label>
                     <Form.Control
                       type="text"
-                      className="border border-primary border-1"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
                       value={prepairsEmail}
                       onChange={(e) => setPrepairsEmail(e.target.value)}
                       onfocusout
@@ -479,6 +534,14 @@ const EditOffer = (props) => {
                   <br />
                 </div>
               </div>
+              <button variant="primary" className="float-end primary btn btn-primary"
+            style={{
+              fontSize: '16px',
+              paddingLeft: '50px',
+              paddingRight: '50px',
+            }}>
+            Submit & Download
+          </button>
               
             </Form>
           </div>
@@ -487,9 +550,7 @@ const EditOffer = (props) => {
         <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={(e) => handleEdit(e)}>
-            Submit & Download
-          </Button>
+         
         </Modal.Footer>
       </Modal>
       

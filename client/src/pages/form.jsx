@@ -418,14 +418,14 @@ function FORM(props) {
             </div>
 
             <div className="col">
-              <Form.Group className="mb-3" controlId="formBasicn">
-                <Form.Label for="validationServer03" className="form-label">Anticipated Start Date</Form.Label>
+            <Form.Group className="mb-3" controlId="formBasicn">
+                <Form.Label for="validationServer03" className="form-label">Offer Expiration Date</Form.Label>
                 <Form.Control
                   type="date"
                   format="MM/dd/yyyy"
                   min={Offer_Date}
                   required
-                  //required pattern="\d{4}-\d{2}-\d{2}"
+                  // required pattern="\d{4}-\d{2}-\d{2}"
                   className="border border-primary border-1 form-control is-invalid"
                   id="validationServer03"
                   aria-describedby="validationServer03Feedback"
