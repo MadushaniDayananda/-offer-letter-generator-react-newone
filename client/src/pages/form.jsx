@@ -403,7 +403,7 @@ function FORM(props) {
                 <Form.Label for="validationServer03" className="form-label">Offer Expiration Date</Form.Label>
                 <Form.Control
                   type="date"
-                  format="MM/dd/yyyy"
+                  
                   min={Offer_Date}
                   required
                   // required pattern="\d{4}-\d{2}-\d{2}"

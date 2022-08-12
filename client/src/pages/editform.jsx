@@ -3,7 +3,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './form.css';
 import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap';
+import moment from 'moment';
 
 
 function EditForm() {
@@ -131,6 +131,13 @@ function EditForm() {
    
     getldetails();
 },[]);
+const dateFromDateString = (dateString) => {
+  return moment(new Date(dateString)).format('YYYY-MM-DDT00:00:00.000');
+};
+
+const dateForPicker = (dateString) => {
+  return moment(new Date(dateString)).format('YYYY-MM-DD');
+};
 
 
   return (
@@ -299,15 +306,20 @@ function EditForm() {
             <Form.Group className="mb-3" controlId="formBasicn">
                 <Form.Label for="validationServer03" className="form-label">Offer Date</Form.Label>
                 <Form.Control
-                  type="date "
-                  format="MM/dd/yyyy"
-                  className="border border-primary border-1 form-control is-invalid"
-                  id="validationServer03"
-                  aria-describedby="validationServer03Feedback"
-                  required
-                  value={oDate}
-                  onChange={(e) => setODate(e.target.value)}
-                />
+                      type="date"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      required
+                      value={oDate ? dateForPicker(oDate) : ''}
+                      onfocus={dateForPicker(oDate)}
+                      placeholder={
+                        oDate ? dateForPicker(oDate) : 'dd/mm/yyyy'
+                      }
+                      onChange={(e) =>
+                        setODate(dateFromDateString(e.target.value))
+                      }
+                    />
               </Form.Group>
               <br />
             </div>
@@ -393,16 +405,21 @@ function EditForm() {
               <Form.Group className="mb-3" controlId="formBasicn">
                 <Form.Label for="validationServer03" className="form-label">Offer Expiration Date</Form.Label>
                 <Form.Control
-                  type="date "
-                  format="MM/dd/yyyy"
-                  className="border border-primary border-1 form-control is-invalid"
-                  id="validationServer03"
-                  aria-describedby="validationServer03Feedback"
-                  required
-                  min={oDate}
-                  value={oExDate}
-                  onChange={(e) => setOExDate(e.target.value)}
-                />
+                      type="date"
+                      className="border border-primary border-1 form-control is-invalid"
+                      id="validationServer03"
+                      aria-describedby="validationServer03Feedback"
+                      min={oDate}
+                      required
+                      value={oExDate ? dateForPicker(oExDate) : ''}
+                      onfocus={dateForPicker(oExDate)}
+                      placeholder={
+                        oDate ? dateForPicker(oExDate) : 'dd/mm/yyyy'
+                      }
+                      onChange={(e) =>
+                        setOExDate(dateFromDateString(e.target.value))
+                      }
+                    />
               </Form.Group>
               <br />
             </div>
@@ -411,14 +428,20 @@ function EditForm() {
             <Form.Group className="mb-3" controlId="formBasicn">
                     <Form.Label for="validationServer03" className="form-label">Start Anticipated Date</Form.Label>
                     <Form.Control
-                      type="date "
-                      format="MM/dd/yyyy"
+                      type="date"
                       className="border border-primary border-1 form-control is-invalid"
                       id="validationServer03"
                       aria-describedby="validationServer03Feedback"
+                      min={oDate}
                       required
-                      value={anticipatedDate}
-                      onChange={(e) => setAnticipatedDate(e.target.value)}
+                      value={anticipatedDate ? dateForPicker(anticipatedDate) : ''}
+                      onfocus={dateForPicker(anticipatedDate)}
+                      placeholder={
+                        anticipatedDate ? dateForPicker(anticipatedDate) : 'dd/mm/yyyy'
+                      }
+                      onChange={(e) =>
+                        setAnticipatedDate(dateFromDateString(e.target.value))
+                      }
                     />
                   </Form.Group>
               <br />

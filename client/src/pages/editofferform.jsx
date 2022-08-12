@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import Calendar from 'react-input-calendar';
+import moment from 'moment';
 import { Link, useNavigate } from 'react-router-dom';
 
 const EditOffer = (props) => {
@@ -29,16 +31,13 @@ const EditOffer = (props) => {
 
   const handleClose = () => {
     setShow(false);
-   
   };
 
-  const Letter=async (id) => {
-    const res = await fetch(
-      `http://localhost:5000/delete/${id}`,
-      {
-        method: 'Delete',
-        headers: { 'Content-Type': 'application/json' },
-      });
+  const Letter = async (id) => {
+    const res = await fetch(`http://localhost:5000/delete/${id}`, {
+      method: 'Delete',
+      headers: { 'Content-Type': 'application/json' },
+    });
   };
   const handleShow = () => {
     setShow(true);
@@ -61,7 +60,7 @@ const EditOffer = (props) => {
     setSignerTitle(props.letterdt.signer_title);
     setSignerEmail(props.letterdt.signer_email);
     setPrepairsEmail(props.letterdt.prepairs_email);
-  }
+  };
 
   //Editting existing todos
   const handleEdit = async (e) => {
@@ -90,22 +89,19 @@ const EditOffer = (props) => {
         Prepairs_Email: prepairsEmail,
       };
       // const response = await fetch(
-        // `http://localhost:5000/letterdt/${props.letterdt.l_id}`,
-        // {
-        //   method: 'PUT',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify(body),
-        // }
-        const response = await fetch('http://localhost:5000/letterdt', {
-          method: 'POST',
-          headers: { 'content-Type': 'application/json' },
-          body: JSON.stringify(body),});
+      // `http://localhost:5000/letterdt/${props.letterdt.l_id}`,
+      // {
+      //   method: 'PUT',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(body),
+      // }
+      const response = await fetch('http://localhost:5000/letterdt', {
+        method: 'POST',
+        headers: { 'content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
 
-
-        
-       
-     
-      navigate('/NewFormatLetter',) 
+      navigate('/NewFormatLetter');
       //   state: {
       //     lname,
       //     CompanyName,
@@ -134,20 +130,30 @@ const EditOffer = (props) => {
     }
   };
 
-  
+  const dateFromDateString = (dateString) => {
+    return moment(new Date(dateString)).format('YYYY-MM-DDT00:00:00.000');
+  };
 
+  const dateForPicker = (dateString) => {
+    return moment(new Date(dateString)).format('YYYY-MM-DD');
+  };
+
+ 
 
   return (
     <>
-    
-      <Button variant="primary" style={{
-            fontSize: '16px',
-            paddingLeft: '2px',
-            paddingRight: '1px',
-          }} onClick={handleShow}>
+      <Button
+        variant="primary"
+        style={{
+          fontSize: '16px',
+          paddingLeft: '2px',
+          paddingRight: '1px',
+        }}
+        onClick={handleShow}
+      >
         Edit & Download
       </Button>
-      
+
       <Modal
         show={show}
         onHide={handleClose}
@@ -161,7 +167,6 @@ const EditOffer = (props) => {
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          
           {/* <input
             type="text"
             className="form-control"
@@ -176,7 +181,9 @@ const EditOffer = (props) => {
                 <h1 className="comA">General Details</h1>
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicName">
-                    <Form.Label for="validationServer03" className="form-label">Letter Name</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Letter Name
+                    </Form.Label>
                     <Form.Control
                       name="lName"
                       type="text"
@@ -199,7 +206,9 @@ const EditOffer = (props) => {
                 {/* <div className="col"> */}
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label for="validationServer03" className="form-label">Company Name</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Company Name
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       className="border border-primary border-1 form-control is-invalid"
@@ -224,7 +233,9 @@ const EditOffer = (props) => {
                 <h1 className="comA">Company Details</h1>
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicA1">
-                    <Form.Label for="validationServer03" className="form-label">Address line 1</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Address line 1
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       className="border border-primary border-1 form-control is-invalid"
@@ -240,7 +251,9 @@ const EditOffer = (props) => {
 
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicA2">
-                    <Form.Label for="validationServer03" className="form-label">Addres line 2</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Addres line 2
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       className="border border-primary border-1 form-control is-invalid"
@@ -258,7 +271,9 @@ const EditOffer = (props) => {
               <div className="row">
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicA3">
-                    <Form.Label for="validationServer03" className="form-label">City</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      City
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       className="border border-primary border-1 form-control is-invalid"
@@ -273,7 +288,9 @@ const EditOffer = (props) => {
                 </div>
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label for="validationServer03" className="form-label">Email Address</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Email Address
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       className="border border-primary border-1 form-control is-invalid"
@@ -295,7 +312,9 @@ const EditOffer = (props) => {
               <div className="row">
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label for="validationServer03" className="form-label">Prospective Employee's Name</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Prospective Employee's Name
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       className="border border-primary border-1 form-control is-invalid"
@@ -312,7 +331,9 @@ const EditOffer = (props) => {
 
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label for="validationServer03" className="form-label">Prospective Employee's Email</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Prospective Employee's Email
+                    </Form.Label>
                     <Form.Control
                       type="email"
                       className="border border-primary border-1 form-control is-invalid"
@@ -329,17 +350,22 @@ const EditOffer = (props) => {
 
               <div className="row">
                 <div className="col">
-                <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label for="validationServer03" className="form-label">Offer Date</Form.Label>
+                  <Form.Group className="mb-3" controlId="formBasicn">
+                    <Form.Label for="validationServer03" className="form-label">
+                      Offer Date
+                    </Form.Label>
                     <Form.Control
-                      type="date "
-                      format="MM/dd/yyyy"
-                      c className="border border-primary border-1 form-control is-invalid"
+                      type="date"
+                      className="border border-primary border-1 form-control is-invalid"
                       id="validationServer03"
                       aria-describedby="validationServer03Feedback"
                       required
-                      value={oDate}
-                      onChange={(e) => setODate(e.target.value)}
+                      value={oDate ? dateForPicker(oDate) : ''}
+                      onfocus={dateForPicker(oDate)}
+                      placeholder={oDate ? dateForPicker(oDate) : 'dd/mm/yyyy'}
+                      onChange={(e) =>
+                        setODate(dateFromDateString(e.target.value))
+                      }
                     />
                   </Form.Group>
                   <br />
@@ -347,7 +373,9 @@ const EditOffer = (props) => {
 
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label for="validationServer03" className="form-label">Direct Report</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Direct Report
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       className="border border-primary border-1 form-control is-invalid"
@@ -368,7 +396,9 @@ const EditOffer = (props) => {
               <div className="row">
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label for="validationServer03" className="form-label">Office Location</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Office Location
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       className="border border-primary border-1 form-control is-invalid"
@@ -388,7 +418,9 @@ const EditOffer = (props) => {
 
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label for="validationServer03" className="form-label">Salary Per Month</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Salary Per Month
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       className="border border-primary border-1 form-control is-invalid"
@@ -406,10 +438,12 @@ const EditOffer = (props) => {
               <div className="row">
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label for="validationServer03" className="form-label">Position</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Position
+                    </Form.Label>
                     <Form.Control
                       type="text"
-                      c className="border border-primary border-1 form-control is-invalid"
+                      className="border border-primary border-1 form-control is-invalid"
                       id="validationServer03"
                       aria-describedby="validationServer03Feedback"
                       required
@@ -425,34 +459,49 @@ const EditOffer = (props) => {
               <div className="row">
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label for="validationServer03" className="form-label">Offer Expiration Date</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Offer Expired Date
+                    </Form.Label>
                     <Form.Control
-                      type="date "
-                      format="MM/dd/yyyy"
-                      c className="border border-primary border-1 form-control is-invalid"
+                      type="date"
+                      className="border border-primary border-1 form-control is-invalid"
                       id="validationServer03"
                       aria-describedby="validationServer03Feedback"
-                      required
                       min={oDate}
-                      value={oExDate}
-                      onChange={(e) => setOExDate(e.target.value)}
+                      required
+                      value={oExDate ? dateForPicker(oExDate) : ''}
+                      onfocus={dateForPicker(oExDate)}
+                      placeholder={
+                        oDate ? dateForPicker(oExDate) : 'dd/mm/yyyy'
+                      }
+                      onChange={(e) =>
+                        setOExDate(dateFromDateString(e.target.value))
+                      }
                     />
                   </Form.Group>
                   <br />
                 </div>
 
                 <div className="col">
-                <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label for="validationServer03" className="form-label">Antipated Start Date</Form.Label>
+                  <Form.Group className="mb-3" controlId="formBasicn">
+                    <Form.Label for="validationServer03" className="form-label">
+                      Antipated Start Date
+                    </Form.Label>
                     <Form.Control
-                      type="date "
-                      format="MM/dd/yyyy"
-                      c className="border border-primary border-1 form-control is-invalid"
+                      type="date"
+                      className="border border-primary border-1 form-control is-invalid"
                       id="validationServer03"
                       aria-describedby="validationServer03Feedback"
+                      min={oDate}
                       required
-                      value={anticipatedDate}
-                      onChange={(e) => setAnticipatedDate(e.target.value)}
+                      value={anticipatedDate ? dateForPicker(anticipatedDate) : ''}
+                      onfocus={dateForPicker(anticipatedDate)}
+                      placeholder={
+                        anticipatedDate ? dateForPicker(anticipatedDate) : 'dd/mm/yyyy'
+                      }
+                      onChange={(e) =>
+                        setAnticipatedDate(dateFromDateString(e.target.value))
+                      }
                     />
                   </Form.Group>
                   <br />
@@ -462,7 +511,9 @@ const EditOffer = (props) => {
               <div className="row">
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label for="validationServer03" className="form-label">Company Signer</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Company Signer
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       className="border border-primary border-1 form-control is-invalid"
@@ -479,7 +530,9 @@ const EditOffer = (props) => {
 
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label for="validationServer03" className="form-label">Signer's Title</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Signer's Title
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       className="border border-primary border-1 form-control is-invalid"
@@ -500,7 +553,9 @@ const EditOffer = (props) => {
               <div className="row">
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label for="validationServer03" className="form-label">Signer's Email Address</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Signer's Email Address
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       className="border border-primary border-1 form-control is-invalid"
@@ -516,7 +571,9 @@ const EditOffer = (props) => {
 
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
-                    <Form.Label for="validationServer03" className="form-label">Preparer's Email Address</Form.Label>
+                    <Form.Label for="validationServer03" className="form-label">
+                      Preparer's Email Address
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       className="border border-primary border-1 form-control is-invalid"
@@ -534,26 +591,26 @@ const EditOffer = (props) => {
                   <br />
                 </div>
               </div>
-              <button variant="primary" className="float-end primary btn btn-primary"
-            style={{
-              fontSize: '16px',
-              paddingLeft: '50px',
-              paddingRight: '50px',
-            }}>
-            Submit & Download
-          </button>
-              
+              <button
+                variant="primary"
+                className="float-end primary btn btn-primary"
+                style={{
+                  fontSize: '16px',
+                  paddingLeft: '50px',
+                  paddingRight: '50px',
+                }}
+              >
+                Submit & Download
+              </button>
             </Form>
           </div>
         </Modal.Body>
         <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-         
         </Modal.Footer>
       </Modal>
-      
     </>
   );
 };
