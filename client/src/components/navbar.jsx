@@ -13,12 +13,12 @@ function Nheading() {
     <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand  href="#home" ><img
-              src="https://pngimage.net/wp-content/uploads/2018/06/png-logo-free-5.png"
-              width="30"
-              height="30"
+              src="https://store.suitecrm.com/assets/img/addons/mail-merge-reports/logo.png?1644951288"
+              width="60"
+              height="50"
               alt="React Bootstrap logo"
             /></Navbar.Brand>
-          <Nav className="me-auto">
+          <Nav className="me-auto" >
             <Nav.Link to="/" href="/">Home</Nav.Link>
             <Nav.Link to="/form" href="/form">Create</Nav.Link>
             <Nav.Link to="/formList" href="/formList">List</Nav.Link>

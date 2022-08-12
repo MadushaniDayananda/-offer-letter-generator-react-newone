@@ -65,7 +65,7 @@ const FormList = () => {
         <Table striped bordered hover variant="warning">
           <thead>
             <tr className="table-dark">
-              <th>Description</th>
+              <th>Offer Letter Name & Position</th>
               <th className="text-center">Edit</th>
               <th className="text-center">Delete</th>
               <th className="text-center">View</th>

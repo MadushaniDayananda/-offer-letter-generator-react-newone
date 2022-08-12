@@ -460,7 +460,7 @@ const EditOffer = (props) => {
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
                     <Form.Label for="validationServer03" className="form-label">
-                      Offer Expired Date
+                      Offer Expiration Date
                     </Form.Label>
                     <Form.Control
                       type="date"
@@ -485,7 +485,7 @@ const EditOffer = (props) => {
                 <div className="col">
                   <Form.Group className="mb-3" controlId="formBasicn">
                     <Form.Label for="validationServer03" className="form-label">
-                      Antipated Start Date
+                    Start Antipated Date
                     </Form.Label>
                     <Form.Control
                       type="date"

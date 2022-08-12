@@ -419,7 +419,7 @@ function FORM(props) {
 
             <div className="col">
             <Form.Group className="mb-3" controlId="formBasicn">
-                <Form.Label for="validationServer03" className="form-label">Offer Expiration Date</Form.Label>
+                <Form.Label for="validationServer03" className="form-label">Start Anticipated Date</Form.Label>
                 <Form.Control
                   type="date"
                   format="MM/dd/yyyy"
